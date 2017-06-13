@@ -1,0 +1,14 @@
+#include "Db.h"
+
+namespace fcdbwgp {
+
+class DbSedna : public Db {
+    public:
+        bool initialize();
+        void destroy();
+        bool query(std::string s);
+        std::string getResult();
+};
+
+}
+

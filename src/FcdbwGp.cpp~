@@ -1,0 +1,148 @@
+#include "FcdbwGp.h"
+
+// Declare our game instance
+FcdbwGp game;
+
+FcdbwGp::FcdbwGp()
+    : _scene(NULL), _wireframe(false), headStep(3.8), moveFlag(0) {
+
+}
+
+void FcdbwGp::initialize()
+{
+    // Load game scene from file
+    _scene = Scene::load("res/world.scene");
+
+    // Get the box model and initialize its material parameter values and bindings
+    head = _scene->findNode("Head");
+    // Model* boxModel = dynamic_cast<Model*>(boxNode->getDrawable());
+    // Material* boxMaterial = boxModel->getMaterial();
+    // for (Node *n = _scene->getFirstNode(); n; n = _scene->getNext())
+    //    std::cout << n->getId() << std::endl;
+
+    // Set the aspect ratio for the scene's camera to match the current resolution
+    Camera *camera = _scene->getActiveCamera();
+    camera->setAspectRatio(getAspectRatio());
+    cameraNode = camera->getNode();
+    // boxNode->translate(Vector3(0, -10, 0));
+    Form *ui = Form::create("res/ui.form");
+    if(ui) {
+        std::cout << "Mada";
+        ui->setEnabled(true);
+    }
+
+   _backgroundMusic = AudioSource::create("res/solo_joilnen.ogg", true);
+   if (_backgroundMusic) {
+      _backgroundMusic->setLooped(true);
+      _backgroundMusic->stop();
+      _backgroundMusic->setGain(0.9f);
+   }
+
+   registerGesture(Gesture::GESTURE_SWIPE);
+    // setCursorVisible(false);
+ 
+
+void FcdbwGp::finalize() {
+    SAFE_RELEASE(_scene);
+    SAFE_RELEASE(ui);
+}
+
+void FcdbwGp::update(float elapsedTime) {
+    // Rotate model
+    // _scene->findNode("Cube")->rotateY(MATH_DEG_TO_RAD((float)elapsedTime / 1000.0f * 180.0f));
+    switch (moveFlag) {
+        case Keyboard::KEY_A:
+            head->translateX(-headStep);
+            break;
+        case Keyboard::KEY_D:
+            head->translateX(headStep);
+            break;
+        case Keyboard::KEY_W:
+            head->translateZ(-headStep);
+            break;
+        case Keyboard::KEY_S:
+            head->translateZ(headStep);
+    }
+}
+
+void FcdbwGp::render(float elapsedTime) {
+    // Clear the color and depth buffers
+    clear(CLEAR_COLOR_DEPTH, Vector4::zero(), 1.0f, 0);
+
+    if(ui)
+        ui->draw();
+    // Visit all the nodes in the scene for drawing
+    _scene->visit(this, &FcdbwGp::drawScene);
+}
+
+bool FcdbwGp::drawScene(Node* node) {
+    // If the node visited contains a drawable object, draw it
+    Drawable* drawable = node->getDrawable();
+    if (drawable)
+       drawable->draw();
+
+    return true;
+}
+
+void FcdbwGp::keyEvent(Keyboard::KeyEvent evt, int key) {
+
+    if (evt == Keyboard::KEY_PRESS) {
+        switch (key) {
+            case Keyboard::KEY_ESCAPE:
+                exit();
+                break;
+            case Keyboard::KEY_A:
+                moveFlag = Keyboard::KEY_A;
+                // head->translateX(-headStep);
+                break;
+            case Keyboard::KEY_D:
+                moveFlag = Keyboard::KEY_D;
+                // head->translateX(headStep);
+                break;
+            case Keyboard::KEY_W:
+                moveFlag = Keyboard::KEY_W;
+                // head->translateZ(-headStep);
+                break;
+            case Keyboard::KEY_S:
+                moveFlag = Keyboard::KEY_S;
+                // head->translateZ(headStep);
+                break;
+            case Keyboard::KEY_M:
+                drawable = !drawable;
+        }
+    }
+    else if(evt == Keyboard::KEY_RELEASE)
+        moveFlag = 0;
+}
+
+
+#ifdef ANDROID
+
+void FcdbwGp::gestureSwipeEvent(int x, int y, int direction) {
+    switch (direction) {
+        case Gesture::SWIPE_DIRECTION_UP:
+            cameraNode->translateZ(-5);
+            break;
+        case Gesture::SWIPE_DIRECTION_DOWN:
+            cameraNode->translateZ(5);
+            break;
+    }
+}
+
+#endif
+
+
+bool FcdbwGp::mouseEvent(Mouse::MouseEvent evt, int x, int y, int wheelDelta ) {
+
+    if(evt == Mouse::MouseEvent::MOUSE_WHEEL) {
+        if(wheelDelta > 0)
+            cameraNode->translateZ(-2);
+        else if (wheelDelta < 0)
+            cameraNode->translateZ(2);
+        return true;
+    }
+
+    return false;
+}
+
+

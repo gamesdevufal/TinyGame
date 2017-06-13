@@ -1,0 +1,185 @@
+material colored
+{
+    u_worldViewProjectionMatrix = WORLD_VIEW_PROJECTION_MATRIX
+
+    renderState
+    {
+        cullFace = true
+        depthTest = true
+    }
+
+    technique
+    {
+        pass
+        {
+            vertexShader = res/shaders/colored.vert
+            fragmentShader = res/shaders/colored.frag
+        }
+    }
+}
+
+material Material_Copa : colored
+{
+    u_diffuseColor = 0.4, 1.0, 0.0, 1
+
+    u_ambientColor = SCENE_AMBIENT_COLOR
+    u_directionalLightColor[0] = 1, 1, 1
+    u_directionalLightDirection[0] = 0, -1, 0
+    u_inverseTransposeWorldViewMatrix = INVERSE_TRANSPOSE_WORLD_VIEW_MATRIX
+
+    technique
+    {
+        pass
+        {
+            defines = DIRECTIONAL_LIGHT_COUNT 1
+        }
+    }
+}
+
+material Material_Tronco : colored
+{
+    u_diffuseColor = 0.2, 0.1, 0.1, 1
+
+    u_ambientColor = SCENE_AMBIENT_COLOR
+    u_directionalLightColor[0] = 1, 1, 1
+    u_directionalLightDirection[0] = 0, -1, 0
+    u_inverseTransposeWorldViewMatrix = INVERSE_TRANSPOSE_WORLD_VIEW_MATRIX
+
+    technique
+    {
+        pass
+        {
+            defines = DIRECTIONAL_LIGHT_COUNT 1
+        }
+    }
+}
+
+material Material_Chao : colored
+{
+    u_diffuseColor = 0.125, 0.165, 0.1, 1
+
+    u_ambientColor = SCENE_AMBIENT_COLOR
+    u_directionalLightColor[0] = 1, 1, 1
+    u_directionalLightDirection[0] = 0, -1, 0
+    u_inverseTransposeWorldViewMatrix = INVERSE_TRANSPOSE_WORLD_VIEW_MATRIX
+
+    technique
+    {
+        pass
+        {
+            defines = DIRECTIONAL_LIGHT_COUNT 1
+        }
+    }
+}
+
+material Material_Head : colored
+{
+    u_diffuseColor = 0.9, 0.9, 0.7, 1
+
+    u_ambientColor = SCENE_AMBIENT_COLOR
+    u_directionalLightColor[0] = 1, 1, 1
+    u_directionalLightDirection[0] = 0, -1, 0
+    u_inverseTransposeWorldViewMatrix = INVERSE_TRANSPOSE_WORLD_VIEW_MATRIX
+
+    technique
+    {
+        pass
+        {
+            defines = DIRECTIONAL_LIGHT_COUNT 1
+        }
+    }
+}
+
+material Material_Body : colored
+{
+    u_diffuseColor = 0.0, 0.3, 0.8, 1
+
+    u_ambientColor = SCENE_AMBIENT_COLOR
+    u_directionalLightColor[0] = 1, 1, 1
+    u_directionalLightDirection[0] = 0, -1, 0
+    u_inverseTransposeWorldViewMatrix = INVERSE_TRANSPOSE_WORLD_VIEW_MATRIX
+
+    technique
+    {
+        pass
+        {
+            defines = DIRECTIONAL_LIGHT_COUNT 1
+        }
+    }
+}
+
+
+material Material_Arm : colored
+{
+    u_diffuseColor = 0.9, 0.9, 0.7, 1
+
+    u_ambientColor = SCENE_AMBIENT_COLOR
+    u_directionalLightColor[0] = 1, 1, 1
+    u_directionalLightDirection[0] = 0, -1, 0
+    u_inverseTransposeWorldViewMatrix = INVERSE_TRANSPOSE_WORLD_VIEW_MATRIX
+
+    technique
+    {
+        pass
+        {
+            defines = DIRECTIONAL_LIGHT_COUNT 1
+        }
+    }
+}
+
+material Material_Leg : colored
+{
+    u_diffuseColor = 0.9, 0.9, 0.7, 1
+
+    u_ambientColor = SCENE_AMBIENT_COLOR
+    u_directionalLightColor[0] = 1, 1, 1
+    u_directionalLightDirection[0] = 0, -1, 0
+    u_inverseTransposeWorldViewMatrix = INVERSE_TRANSPOSE_WORLD_VIEW_MATRIX
+
+    technique
+    {
+        pass
+        {
+            defines = DIRECTIONAL_LIGHT_COUNT 1
+        }
+    }
+}
+
+material Material_Hips : colored
+{
+    u_diffuseColor = 0.9, 0.0, 0.9, 1
+
+    u_ambientColor = SCENE_AMBIENT_COLOR
+    u_directionalLightColor[0] = 1, 1, 1
+    u_directionalLightDirection[0] = 0, -1, 0
+    u_inverseTransposeWorldViewMatrix = INVERSE_TRANSPOSE_WORLD_VIEW_MATRIX
+
+    technique
+    {
+        pass
+        {
+            defines = DIRECTIONAL_LIGHT_COUNT 1
+        }
+    }
+}
+
+material Material_Casa : colored
+{
+    u_diffuseColor = 0.3, 0.2, 0.4, 1
+
+    u_ambientColor = SCENE_AMBIENT_COLOR
+    u_directionalLightColor[0] = 1, 1, 1
+    u_directionalLightDirection[0] = 0, -1, 0
+    u_inverseTransposeWorldViewMatrix = INVERSE_TRANSPOSE_WORLD_VIEW_MATRIX
+
+    technique
+    {
+        pass
+        {
+            defines = DIRECTIONAL_LIGHT_COUNT 1
+        }
+    }
+}
+
+
+

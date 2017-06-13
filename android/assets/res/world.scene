@@ -1,0 +1,22 @@
+scene
+{
+    path = res/world.gpb
+
+    ambientColor = 1, 1, 1
+
+//    node Plane {
+//        material = res/demo.material#Material_Chao
+//    }
+//
+//    node Copa_1 {
+//        material = res/demo.material#Material_Copa
+//    }
+//
+//    node Tronco_1 {
+//        material = res/demo.material#Material_Tronco
+//    }
+//
+//     physics {
+//         gravity = 0.0, 0.0, 0.0
+//     }
+}

@@ -1,0 +1,32 @@
+#include "DbSedna.h"
+
+namespace fcdbwgp {
+
+bool DbSedna::initialize() {
+    struct SednaConnection conn = SEDNA_CONNECTION_INITIALIZER;
+    this->conn = &conn
+
+
+    return false;
+}
+
+
+void DbSedna::destroy() {
+
+
+}
+
+
+bool DbSedna::query(std::string s) {
+
+    return false;
+}
+
+std::string DbSedna::getResult(){
+
+    std::string s;
+
+    return s;
+}
+
+}
